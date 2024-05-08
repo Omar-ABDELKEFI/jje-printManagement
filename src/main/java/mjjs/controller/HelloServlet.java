@@ -1,4 +1,4 @@
-package mjjs;
+package mjjs.controller;
 
 import java.io.*;
 import java.util.Properties;
@@ -9,24 +9,67 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HelloServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        PrintWriter out = res.getWriter();
-        out.println("<pre>");
-        out.println("Welcome to hello world!");
-        out.println("");
-        out.println("Reading /application.properties ...");
+        Properties prop = loadProperties();
+        Connection connection = establishConnection(prop, res.getWriter());
 
+        if (connection != null) {
+            Statement stmt = null;
+            String query = "SELECT s.subject_name " +
+                           "FROM Users u " +
+                           "JOIN TeacherSubject ts ON u.user_id = ts.user_id " +
+                           "JOIN Subjects s ON ts.subject_id = s.subject_id " +
+                           "WHERE u.user_id = 1;";
+
+            List<String> subjectNames = new ArrayList<>();
+
+            try {
+                stmt = connection.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+
+                while (rs.next()) {
+                    String subjectName = rs.getString("subject_name");
+                    subjectNames.add(subjectName);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (stmt != null) {
+                        stmt.close();
+                    }
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            req.setAttribute("subjectNames", subjectNames);
+            req.getRequestDispatcher("/views/subjectList.jsp").forward(req, res);
+        }
+    }
+
+    private Properties loadProperties() {
         Properties prop = new Properties();
         InputStream in = getClass().getResourceAsStream("/application.properties");
         if (in == null) {
-            out.println("Missing application.properties in the war.");
+            return null;
         } else {
-            prop.load(in);
-            in.close();
+            try {
+                prop.load(in);
+                in.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return prop;
         }
+    }
 
+    private Connection establishConnection(Properties prop, PrintWriter out) {
         String jdbc = prop.getProperty("mjjs.datasource.url");
         String username = prop.getProperty("mjjs.datasource.username");
         String password = prop.getProperty("mjjs.datasource.password");
@@ -38,9 +81,7 @@ public class HelloServlet extends HttpServlet {
             out.println("mjjs.datasource.username=ltiuser");
             out.println("mjjs.datasource.password=ltipassword");
             out.println("mjjs.datasource.driverClassName=com.mysql.jdbc.Driver");
-            out.println("</pre>");
-            out.close();
-            return;
+            return null;
         }
 
         try {
@@ -49,7 +90,7 @@ public class HelloServlet extends HttpServlet {
             out.println("Missing JDBC Driver: " + className);
             System.out.println("Missing JDBC Driver: " + className);
             e.printStackTrace();
-            return;
+            return null;
         }
 
         Connection connection = null;
@@ -63,43 +104,9 @@ public class HelloServlet extends HttpServlet {
             out.println("GRANT ALL ON mjjs.* TO 'mjjsuser'@'localhost' IDENTIFIED BY 'mjjspassword';");
             out.println("GRANT ALL ON mjjs.* TO 'mjjsuser'@'127.0.0.1' IDENTIFIED BY 'mjjspassword';");
             e.printStackTrace();
-            return;
+            return null;
         }
 
-        if (connection == null) {
-            out.println("Connection Failed!");
-            return;
-        }
-
-        Statement stmt = null;
-        String query = "SELECT s.subject_name " +
-                       "FROM Users u " +
-                       "JOIN TeacherSubject ts ON u.user_id = ts.user_id " +
-                       "JOIN Subjects s ON ts.subject_id = s.subject_id " +
-                       "WHERE u.user_id = 1;";
-
-        try {
-            stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-
-            while (rs.next()) {
-                String subjectName = rs.getString("subject_name");
-                out.println("Subject: " + subjectName);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (stmt != null) {
-                    stmt.close();
-                }
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        out.println("</pre>");
-        out.close();
+        return connection;
     }
 }
