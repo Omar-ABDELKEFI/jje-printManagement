@@ -1,7 +1,7 @@
 version: '3'
 services:
   db:
-    image: mysql:5.7
+    image:  mysql:5.7.22
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -23,8 +23,9 @@ services:
     environment:
       PMA_HOST: db
       MYSQL_USER: mjjsuser
+      PMA_PORT: 3306
       MYSQL_PASSWORD: mjjspassword
-    depends_on:
+    links:
       - db
     networks:
       - my_network
