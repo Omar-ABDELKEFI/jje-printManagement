@@ -3,11 +3,23 @@
          xsi:schemaLocation="http:/java.sun.com/dtd/web-app_2_3.dtd">
   <servlet>
     <servlet-name>hello</servlet-name>
-    <servlet-class>mjjs.controller.HelloServlet</servlet-class>
+    <servlet-class>com.example.jee.printing.platform.controller.HelloServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
     <servlet-name>hello</servlet-name>
     <url-pattern>/hello</url-pattern>
   </servlet-mapping>
+
+    <!-- Define PrintRequestServlet -->
+    <servlet>
+        <servlet-name>PrintRequestServlet</servlet-name>
+        <servlet-class>com.example.jee.printing.platform.controller.PrintRequestServlet</servlet-class>
+    </servlet>
+
+    <!-- Map PrintRequestServlet to /printRequest -->
+    <servlet-mapping>
+        <servlet-name>PrintRequestServlet</servlet-name>
+        <url-pattern>/printRequest</url-pattern>
+    </servlet-mapping>
 </web-app>
