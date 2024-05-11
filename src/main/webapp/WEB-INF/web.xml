@@ -15,6 +15,11 @@
     <servlet>
         <servlet-name>PrintRequestServlet</servlet-name>
         <servlet-class>com.example.jee.printing.platform.controller.PrintRequestServlet</servlet-class>
+   <multipart-config>
+        <max-file-size>20848820</max-file-size> <!-- Max size in bytes (20MB) -->
+        <max-request-size>418018841</max-request-size> <!-- Max size of multipart/form-data request in bytes (50MB) -->
+        <file-size-threshold>1048576</file-size-threshold> <!-- Size threshold for buffering files in bytes (1MB) -->
+    </multipart-config>
     </servlet>
 
     <!-- Map PrintRequestServlet to /printRequest -->
@@ -22,4 +27,13 @@
         <servlet-name>PrintRequestServlet</servlet-name>
         <url-pattern>/printRequest</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+    <servlet-name>GetMatiersServlet</servlet-name>
+    <servlet-class>com.example.jee.printing.platform.controller.GetMatiersServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>GetMatiersServlet</servlet-name>
+    <url-pattern>/getMatiers</url-pattern>
+</servlet-mapping>
 </web-app>

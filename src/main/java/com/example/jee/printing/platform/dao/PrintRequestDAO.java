@@ -33,9 +33,12 @@ public class PrintRequestDAO {
             e.printStackTrace();
         } finally {
             try {
-                if (resultSet != null) resultSet.close();
-                if (statement != null) statement.close();
-                if (connection != null) connection.close();
+                if (resultSet != null)
+                    resultSet.close();
+                if (statement != null)
+                    statement.close();
+                if (connection != null)
+                    connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -44,12 +47,39 @@ public class PrintRequestDAO {
         return printRequestId;
     }
 
-    public void saveGroupAssociation(int printRequestId, int groupId) {
-        // Logic to save association between print request and group
-    }
+    public void saveGroupMatierAssociation(String[] groupIds, String[] matierIds, int printRequestId) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        System.out.print("ffffffffffff");
+        System.out.println(groupIds);
+        System.out.println(matierIds);
+        System.out.println(printRequestId);
+        try {
+            connection = ConnectionUtils.getConnection();
+            String query = "INSERT INTO PrintMatierGroupe (print_request_id, matier_groupe_id) VALUES (?, " +
+                    "(SELECT mg.id FROM MatierGroupe mg WHERE mg.matier_id = ? AND mg.groupe_id = ?))";
+            statement = connection.prepareStatement(query);
 
-    public void saveMatierAssociation(int printRequestId, int matierId) {
-        // Logic to save association between print request and matier
+            for (String matierId : matierIds) {
+                for (String groupId : groupIds) {
+                    statement.setInt(1, printRequestId);
+                    statement.setInt(2, Integer.parseInt(matierId));
+                    statement.setInt(3, Integer.parseInt(groupId));
+                    statement.executeUpdate();
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (statement != null)
+                    statement.close();
+                if (connection != null)
+                    connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     // Other DAO methods (findById, update, delete, etc.)
