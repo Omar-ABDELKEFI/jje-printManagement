@@ -71,4 +71,16 @@
         <url-pattern>/UpdateStatusServlet</url-pattern>
     </servlet-mapping>
 
+    <!-- Define AddUserServlet -->
+    <servlet>
+        <servlet-name>AddUserServlet</servlet-name>
+        <servlet-class>com.example.jee.printing.platform.controller.AddUserServlet</servlet-class>
+    </servlet>
+
+    <!-- Map AddUserServlet to /AddUserServlet -->
+    <servlet-mapping>
+        <servlet-name>AddUserServlet</servlet-name>
+        <url-pattern>/AddUserServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

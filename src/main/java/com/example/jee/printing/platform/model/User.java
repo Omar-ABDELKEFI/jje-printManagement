@@ -20,6 +20,11 @@ public class User {
         this.status = status;
     }
 
+ // Constructor
+    public User() {
+        
+    }
+    
     public User(String firstName, String lastName, String email, String password, String role, String status) {
         this.firstName = firstName;
         this.lastName = lastName;

@@ -23,7 +23,17 @@
     <h2>Welcome Admin!</h2>
     
     <!-- Add a section to display the list of users -->
-    <h3>User List</h3>
+    <div style="display: flex; justify-content: space-between;" class="px-5">
+        <h3>User List</h3>
+        <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#addUserModal">
+            Add User
+        </button>
+    </div>
+    <div class="modal fade" id="addUserModal" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
+        <%-- Include editUser.jsp here --%>
+        <%@ include file="addUser.jsp" %>
+    </div>
+
     <table class="table">
         <thead>
             <tr>
@@ -53,7 +63,7 @@
                                 onchange="statusSwitch(${user.id}, this.checked)"
                                 checked> 
                                 
-                            <label for="statusSwitch${user.id}">${user.status}</label>
+                            <label for="statusSwitch${user.id}" style="width:58px">${user.status}</label>
                             </c:when>    
                             <c:otherwise>
                                 <input type="checkbox" id="statusSwitch${user.id}" 
@@ -94,18 +104,19 @@
     <script>
         function statusSwitch(userId, isChecked) {
             var status = isChecked ? "active" : "inactive";
-            console.log(userId, isChecked)
-            $.ajax({
-                url: "UpdateStatusServlet",
-                type: "POST",
-                data: { userId: userId, status: status },
-                success: function(response) {
-                    var label = document.querySelector("label[for='statusSwitch" + userId + "']");
+            var label = document.querySelector("label[for='statusSwitch" + userId + "']");
                     if (isChecked) {
                         label.innerText = "active";
                     } else {
                         label.innerText = "inactive";
                     }
+
+            $.ajax({
+                url: "UpdateStatusServlet",
+                type: "POST",
+                data: { userId: userId, status: status },
+                success: function(response) {
+                    
 
                 }
             });
