@@ -22,4 +22,17 @@
         <servlet-name>PrintRequestServlet</servlet-name>
         <url-pattern>/printRequest</url-pattern>
     </servlet-mapping>
+
+        <!-- Define LoginServlet -->
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.example.jee.printing.platform.controller.LoginServlet</servlet-class>
+    </servlet>
+
+    <!-- Map LoginServlet to /LoginServlet -->
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>
