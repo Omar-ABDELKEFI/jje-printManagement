@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
 
-    <title>Course Management</title>
+    <title>Group Management</title>
     <!-- Link Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Add custom CSS -->
@@ -22,7 +22,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#">Course Management</a>
+            <a class="navbar-brand" href="#">Group Management</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -33,24 +33,24 @@
                         <a class="nav-link" href="AdminDashboardServlet">Admin Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="GroupeManagementServlet">Group Management</a>
+                        <a class="nav-link" href="MatierManagementServlet">Course Management</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="GroupeManagementServlet">Group/Course Management</a>
+                        <a class="nav-link" href="MatierManagementServlet">Group/Course Management</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
     <div style="display: flex; justify-content: space-between;" class="px-5">
-        <h3>Course List</h3>
-        <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#addCourse">
-            Add Course
+        <h3>Group List</h3>
+        <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#addGroup">
+            Add Group
         </button>
     </div>
-    <div class="modal fade" id="addCourse" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="addCourseLabel" aria-hidden="true">
-        <%-- Include addMatier.jsp here --%>
-        <%@ include file="addMatier.jsp" %>
+    <div class="modal fade" id="addGroup" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="addGroupLabel" aria-hidden="true">
+        <%-- Include addGroupe.jsp here --%>
+        <%@ include file="addGroupe.jsp" %>
     </div>
 
     <table class="table">
@@ -58,27 +58,29 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
+                <th>Number of Students</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            <!-- Iterate over the list of courses -->
-            <c:forEach var="matier" items="${matierList}">
+            <!-- Iterate over the list of groups -->
+            <c:forEach var="groupe" items="${groupeList}">
                 <tr>
-                    <td>${matier.id}</td>
-                    <td>${matier.name}</td>
+                    <td>${groupe.id}</td>
+                    <td>${groupe.name}</td>
+                    <td>${groupe.numStudents}</td>
                     <!-- Add edit and delete buttons if needed -->
                     <td>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal${matier.id}">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal${groupe.id}">
                             Edit
                         </button>
                         
                     </td>
                 
                 </tr>
-                <div class="modal fade" data-backdrop="false" id="editModal${matier.id}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-                    <%-- Include editMatiersp.jsp here --%>
-                    <%@ include file="editMatier.jsp" %>
+                <div class="modal fade" data-backdrop="false" id="editModal${groupe.id}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                    <%-- Include editGroupe.jsp here --%>
+                    <%@ include file="editGroupe.jsp" %>
                 </div>
 
             </c:forEach>

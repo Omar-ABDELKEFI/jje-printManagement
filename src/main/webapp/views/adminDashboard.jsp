@@ -33,7 +33,7 @@
                         <a class="nav-link" href="MatierManagementServlet">Course Management</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="GroupManagementServlet">Group Management</a>
+                        <a class="nav-link" href="GroupeManagementServlet">Group Management</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="GroupCourseManagementServlet">Group/Course Management</a>
