@@ -19,14 +19,11 @@ public class AgentDashboardServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Récupérer les tâches de l'agent de tirage depuis la base de données en utilisant PrintTaskDAO
         List<Task> tasks = printTaskDAO.getAgentTasks();
-        // Passer les tâches à la page JSP
         request.setAttribute("tasks", tasks);
         request.getRequestDispatcher("/views/agentDashboard.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Gérer les requêtes POST si nécessaire
     }
 }
