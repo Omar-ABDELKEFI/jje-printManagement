@@ -5,7 +5,6 @@ import com.example.jee.printing.platform.dao.MatierDAO;
 import com.example.jee.printing.platform.dao.PrintMatierGroupeDAO;
 import com.example.jee.printing.platform.dao.PrintRequestDAO;
 import com.example.jee.printing.platform.model.Groupe;
-import com.example.jee.printing.platform.model.Matier;
 import com.example.jee.printing.platform.model.PrintRequest;
 
 import javax.servlet.ServletException;
@@ -15,10 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.InputStream;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class PrintRequestServlet extends HttpServlet {
@@ -50,33 +47,28 @@ public class PrintRequestServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Retrieve form data
         String[] groupIds = request.getParameterValues("groupIds");
         String[] matierIds = request.getParameterValues("matierIds");
-        System.out.println("fffffffff");
+        String fileName = request.getParameter("fileName");
         Part document = request.getPart("document");
         int numStudents = Integer.parseInt(request.getParameter("numStudents"));
 
-        // Part datePart = request.getPart("arrivalDateTime");
-        // System.out.println(datePart);
+       
 
-        System.out.println(request.getParameter("arrivalDateTime"));
         LocalDateTime arrivalDateTime = LocalDateTime.parse(request.getParameter("arrivalDateTime"));
 
-        // Assuming the logged-in user's ID is 1
         int loggedInUserId = 1;
 
-        // Create a new PrintRequest object
         PrintRequest printRequest = new PrintRequest();
         printRequest.setUserId(loggedInUserId);
         printRequest.setNumStudents(numStudents);
+        
         printRequest.setArrivalDateTime(arrivalDateTime);
+        printRequest.setFileName(fileName);
 
-        // Save the document file
         InputStream documentInputStream = document.getInputStream();
         printRequest.setDocument(documentInputStream);
 
-        // Save the print request to the database
         int printRequestId = printRequestDAO.save(printRequest);
 
         printRequestDAO.saveGroupMatierAssociation(groupIds, matierIds, printRequestId);

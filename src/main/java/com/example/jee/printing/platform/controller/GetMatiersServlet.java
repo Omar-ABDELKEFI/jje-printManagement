@@ -52,7 +52,7 @@ public class GetMatiersServlet extends HttpServlet {
                 out.println(options.toString());
             }
         } else {
-            out.println("<option value=\"\">No Group IDs Provided</option>");
+            out.println("<option value=\"\">Sélectionnez un groupe</option>");
         }
     }
 

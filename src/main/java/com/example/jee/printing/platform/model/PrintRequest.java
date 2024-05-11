@@ -7,6 +7,7 @@ public class PrintRequest {
     private int id;
     private int userId;
     private int numStudents;
+    private String fileName;
     private LocalDateTime arrivalDateTime;
     private InputStream document;
 
@@ -14,11 +15,12 @@ public class PrintRequest {
     public PrintRequest() {
     }
 
-    public PrintRequest(int userId, int numStudents, LocalDateTime arrivalDateTime, InputStream document) {
+    public PrintRequest(int userId, int numStudents, LocalDateTime arrivalDateTime, InputStream document,String fileName) {
         this.userId = userId;
         this.numStudents = numStudents;
         this.arrivalDateTime = arrivalDateTime;
         this.document = document;
+        this.fileName = fileName;
     }
 
     // Getters and setters
@@ -30,6 +32,13 @@ public class PrintRequest {
         this.id = id;
     }
 
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
     public int getUserId() {
         return userId;
     }

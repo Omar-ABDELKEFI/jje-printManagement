@@ -16,7 +16,7 @@ public class PrintMatierGroupeDAO {
             String query = "INSERT INTO PrintMatierGroupe (print_request_id, matier_groupe_id) VALUES (?, ?)";
             statement = connection.prepareStatement(query);
             statement.setInt(1, printRequestId);
-            statement.setInt(2, groupId); // Change this to appropriate column name
+            statement.setInt(2, groupId); 
 
             statement.executeUpdate();
         } catch (SQLException e) {

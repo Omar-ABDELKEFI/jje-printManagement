@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.format.DateTimeFormatter;
 
 public class PrintRequestDAO {
     public int save(PrintRequest printRequest) {
@@ -15,14 +16,18 @@ public class PrintRequestDAO {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
         try {
             connection = ConnectionUtils.getConnection();
-            String query = "INSERT INTO PrintRequest (user_id, numStudents, document) VALUES (?, ?, ?)";
+            String query = "INSERT INTO PrintRequest (user_id, numStudents, document,fileName,arrivalDateTime) VALUES (?, ?, ?,?,?)";
             statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, printRequest.getUserId());
             statement.setInt(2, printRequest.getNumStudents());
             statement.setBlob(3, printRequest.getDocument());
+            statement.setString(4, printRequest.getFileName());
+            statement.setTimestamp(5, java.sql.Timestamp.valueOf(printRequest.getArrivalDateTime()));
+
             statement.executeUpdate();
 
             resultSet = statement.getGeneratedKeys();
@@ -51,9 +56,7 @@ public class PrintRequestDAO {
         Connection connection = null;
         PreparedStatement statement = null;
         System.out.print("ffffffffffff");
-        System.out.println(groupIds);
-        System.out.println(matierIds);
-        System.out.println(printRequestId);
+       
         try {
             connection = ConnectionUtils.getConnection();
             String query = "INSERT INTO PrintMatierGroupe (print_request_id, matier_groupe_id) VALUES (?, " +
