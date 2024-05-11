@@ -22,7 +22,6 @@ public class PrintTaskDAO {
             connection = ConnectionUtils.getConnection();
             // Changez la requête SQL en fonction de votre schéma de base de données
             String query = "SELECT pr.user_id, u.email AS teacher_name, pr.numStudents AS num_copies, pr.arrivalDateTime AS reception_date, pr.document FROM PrintRequest pr JOIN User u ON pr.user_id = u.id";
-            System.out.println(query + " - query--------------");
             statement = connection.prepareStatement(query);
             resultSet = statement.executeQuery();
 

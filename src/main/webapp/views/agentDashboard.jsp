@@ -50,20 +50,29 @@
                     <th>Teacher Name</th>
                     <th>Number of Copies</th>
                     <th>Date of Reception</th>
-                    <th>Document to Print</th>
+                    <th>Document</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <c:forEach items="${tasks}" var="task">
+                <c:forEach items="${tasks}" var="task" varStatus="loop">
                     <tr>
                         <td>${task.teacherName}</td>
                         <td>${task.numCopies}</td>
                         <td>${task.receptionDate}</td>
-                        <td>${task.document}</td>
+                        <td id="document${loop.index + 1}">Document ${loop.index + 1}</td>
+                        <td><button onclick="printDocument(${loop.index + 1})">Print Document</button></td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
     </div>
+
+    <script>
+        function printDocument(documentNumber) {
+            // Assuming you have some logic to fetch and print the document
+            alert("Printing Document " + documentNumber);
+        }
+    </script>
 </body>
 </html>
