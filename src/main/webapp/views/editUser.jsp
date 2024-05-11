@@ -34,7 +34,11 @@
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="email" name="email" value="${user.email}" required>
                     </div>
-                    <!-- Add more fields as needed -->
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="text" class="form-control" id="password" name="password" value="${user.password}" required>
+                    </div>
+
                     <button type="submit" class="btn btn-primary">Save Changes</button>
                 </form>
             </div>

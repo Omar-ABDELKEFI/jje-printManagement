@@ -59,4 +59,16 @@
         <url-pattern>/AdminDashboardServlet</url-pattern>
     </servlet-mapping>
 
+    <!-- Define UpdateStatusServlet -->
+    <servlet>
+        <servlet-name>UpdateStatusServlet</servlet-name>
+        <servlet-class>com.example.jee.printing.platform.controller.UpdateStatusServlet</servlet-class>
+    </servlet>
+
+    <!-- Map PrintRequestServlet to /printRequest -->
+    <servlet-mapping>
+        <servlet-name>UpdateStatusServlet</servlet-name>
+        <url-pattern>/UpdateStatusServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

@@ -20,7 +20,6 @@ public class AdminDashboardServlet extends HttpServlet {
         // Retrieve the list of users
         UserDAO userDAO = new UserDAO();
         List<User> userList = userDAO.findAll();
-
         // Set the list of users as a request attribute
         request.setAttribute("userList", userList);
 

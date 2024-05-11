@@ -2,9 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
+
     <title>Admin Dashboard</title>
     <!-- Link Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -42,13 +45,26 @@
                     <td>${user.lastName}</td>
                     <td>${user.email}</td>
                     <td>${user.role}</td>
+                    
                     <td>
-                        <input type="checkbox" id="statusSwitch${user.id}" 
-                               onchange="toggleStatus(${user.id}, this.checked)"
-                               <% if(user.getStatus().equals("Active")) { %>checked<% } %>>
-                        <label for="statusSwitch${user.id}">${user.status}</label>
+                        <c:choose>
+                            <c:when test="${user.status.equals('active')}">
+                                <input type="checkbox" id="statusSwitch${user.id}" 
+                                onchange="statusSwitch(${user.id}, this.checked)"
+                                checked> 
+                                
+                            <label for="statusSwitch${user.id}">${user.status}</label>
+                            </c:when>    
+                            <c:otherwise>
+                                <input type="checkbox" id="statusSwitch${user.id}" 
+                                onchange="statusSwitch(${user.id}, this.checked)"
+                                > 
+                                
+                                <label for="statusSwitch${user.id}">${user.status}</label>
+                            </c:otherwise>
+                        </c:choose>                        
                     </td>
-    
+
                     <!-- Add edit and delete buttons -->
                     <td>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal${user.id}">
@@ -59,7 +75,7 @@
                 </tr>
 
                 <!-- Include edit modal -->
-                <div class="modal fade" id="editModal${user.id}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal fade" data-backdrop="false" id="editModal${user.id}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
                     <%-- Include editUser.jsp here --%>
                     <%@ include file="editUser.jsp" %>
                 </div>
@@ -73,15 +89,24 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <script>
-        function toggleStatus(userId, isChecked) {
-            var status = isChecked ? "Active" : "Inactive";
+        function statusSwitch(userId, isChecked) {
+            var status = isChecked ? "active" : "inactive";
+            console.log(userId, isChecked)
             $.ajax({
                 url: "UpdateStatusServlet",
                 type: "POST",
                 data: { userId: userId, status: status },
                 success: function(response) {
-                    // Optionally handle the response here
+                    var label = document.querySelector("label[for='statusSwitch" + userId + "']");
+                    if (isChecked) {
+                        label.innerText = "active";
+                    } else {
+                        label.innerText = "inactive";
+                    }
+
                 }
             });
         }
