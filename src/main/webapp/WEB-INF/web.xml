@@ -83,4 +83,14 @@
         <url-pattern>/AddUserServlet</url-pattern>
     </servlet-mapping>
 
+     <servlet>
+    <description></description>
+    <display-name>AgentDashboardServlet</display-name>
+    <servlet-name>AgentDashboardServlet</servlet-name>
+    <servlet-class>com.example.jee.printing.platform.controller.AgentDashboardServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AgentDashboardServlet</servlet-name>
+    <url-pattern>/agentDashboard</url-pattern>
+  </servlet-mapping>
 </web-app>

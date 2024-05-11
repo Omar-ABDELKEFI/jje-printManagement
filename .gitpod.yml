@@ -10,7 +10,7 @@ tasks:
     command: mvn clean compile install jetty:run
 
   - name: DB Server (using Docker Compose)
-    init: docker-compose up -d  # Run detached mode for background execution
+    init: mkdir logs & docker-compose up -d  # Run detached mode for background execution
 
 
 
