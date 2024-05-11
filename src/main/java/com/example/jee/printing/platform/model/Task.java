@@ -5,12 +5,15 @@ public class Task {
     private int numCopies;
     private String receptionDate;
     private String document;
+    private String fileName;
 
-    public Task(String teacherName, int numCopies, String receptionDate, String document) {
+    public Task(String teacherName, int numCopies, String receptionDate, String document, String fileName) {
         this.teacherName = teacherName;
         this.numCopies = numCopies;
         this.receptionDate = receptionDate;
         this.document = document;
+        this.fileName = fileName;
+
     }
 
     public String getTeacherName() {
@@ -43,5 +46,13 @@ public class Task {
 
     public void setDocument(String document) {
         this.document = document;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }

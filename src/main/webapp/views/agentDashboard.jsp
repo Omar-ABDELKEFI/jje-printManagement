@@ -2,16 +2,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agent Dashboard</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f9f9f9;
         }
         .container {
             max-width: 800px;
@@ -23,21 +24,37 @@
         }
         h1 {
             text-align: center;
+            margin-bottom: 20px;
         }
         table {
             width: 100%;
             border-collapse: collapse;
         }
         th, td {
-            padding: 10px;
+            padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
         th {
             background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
         }
         tr:hover {
-            background-color: #f9f9f9;
+            background-color: #f0f0f0;
+        }
+        button {
+            padding: 8px 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
@@ -60,8 +77,8 @@
                         <td>${task.teacherName}</td>
                         <td>${task.numCopies}</td>
                         <td>${task.receptionDate}</td>
-                        <td id="document${loop.index + 1}">Document ${loop.index + 1}</td>
-                        <td><button onclick="printDocument(${loop.index + 1})">Print Document</button></td>
+                        <td>${task.fileName}</td>
+                        <td><button onclick="">Print Document</button></td>
                     </tr>
                 </c:forEach>
             </tbody>
@@ -69,9 +86,12 @@
     </div>
 
     <script>
-        function printDocument(documentNumber) {
-            // Assuming you have some logic to fetch and print the document
-            alert("Printing Document " + documentNumber);
+        function printDocument(pdfBlob) {
+            const pdfUrl = URL.createObjectURL(pdfBlob);
+            const pdfWindow = window.open(pdfUrl);
+            pdfWindow.onload = function() {
+                pdfWindow.print();
+            };
         }
     </script>
 </body>

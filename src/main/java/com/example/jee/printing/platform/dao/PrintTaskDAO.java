@@ -20,8 +20,7 @@ public class PrintTaskDAO {
 
         try {
             connection = ConnectionUtils.getConnection();
-            // Changez la requête SQL en fonction de votre schéma de base de données
-            String query = "SELECT pr.user_id, u.email AS teacher_name, pr.numStudents AS num_copies, pr.arrivalDateTime AS reception_date, pr.document FROM PrintRequest pr JOIN User u ON pr.user_id = u.id";
+            String query = "SELECT pr.user_id, u.email AS teacher_name, pr.numStudents AS num_copies, pr.arrivalDateTime AS reception_date, pr.document, pr.fileName FROM PrintRequest pr JOIN User u ON pr.user_id = u.id";
             statement = connection.prepareStatement(query);
             resultSet = statement.executeQuery();
 
@@ -30,8 +29,8 @@ public class PrintTaskDAO {
                 int numCopies = resultSet.getInt("num_copies");
                 String receptionDate = resultSet.getString("reception_date");
                 String document = resultSet.getString("document");
-
-                Task task = new Task(teacherName, numCopies, receptionDate, document);
+                String fileName = resultSet.getString("fileName");
+                Task task = new Task(teacherName, numCopies, receptionDate, document, fileName);
                 tasks.add(task);
             }
             
