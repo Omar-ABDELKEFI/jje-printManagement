@@ -10,7 +10,48 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class MatierDAO {
+
+    public void addMatier(Matier matier) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try {
+            connection = ConnectionUtils.getConnection();
+            String query = "INSERT INTO Matier (name) VALUES (?)";
+            statement = connection.prepareStatement(query);
+            statement.setString(1, matier.getName());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } 
+    }
+
+    public Matier findById(int matierId) {
+        Matier matier = null;
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = ConnectionUtils.getConnection();
+            String query = "SELECT * FROM Matier WHERE id = ?";
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, matierId);
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                String name = resultSet.getString("name");
+                matier = new Matier(matierId, name);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } 
+
+        return matier;
+    }
+
     public List<Matier> findAll() {
         List<Matier> matiers = new ArrayList<>();
         Connection connection = null;
@@ -26,26 +67,52 @@ public class MatierDAO {
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
-
                 Matier matier = new Matier(id, name);
                 matiers.add(matier);
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (resultSet != null) resultSet.close();
-                if (statement != null) statement.close();
-                if (connection != null) connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+        } 
 
         return matiers;
     }
 
-    public List<Matier> findByGroupId(int groupId) {
+    public void deleteMatier(int matierId) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try {
+            connection = ConnectionUtils.getConnection();
+            String query = "DELETE FROM Matier WHERE id = ?";
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, matierId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } 
+    }
+
+    public void updateMatier(Matier matier) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try {
+            connection = ConnectionUtils.getConnection();
+            String query = "UPDATE Matier SET name = ? WHERE id = ?";
+            statement = connection.prepareStatement(query);
+            statement.setString(1, matier.getName());
+            statement.setInt(2, matier.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } 
+    }
+
+
+
+
+
+        public List<Matier> findByGroupId(int groupId) {
         List<Matier> matiers = new ArrayList<>();
         Connection connection = null;
         PreparedStatement statement = null;
@@ -144,5 +211,4 @@ public class MatierDAO {
         return commonMatiers;
     }
 
-    // Other DAO methods (findById, save, update, delete)
 }
