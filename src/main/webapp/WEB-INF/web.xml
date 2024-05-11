@@ -93,4 +93,45 @@
     <servlet-name>AgentDashboardServlet</servlet-name>
     <url-pattern>/agentDashboard</url-pattern>
   </servlet-mapping>
+
+      <!-- Define MatierManagementServlet -->
+    <servlet>
+        <servlet-name>MatierManagementServlet</servlet-name>
+        <servlet-class>com.example.jee.printing.platform.controller.MatierManagementServlet</servlet-class>
+    </servlet>
+
+    <!-- Map MatierManagementServlet to /MatierManagementServlet -->
+    <servlet-mapping>
+        <servlet-name>MatierManagementServlet</servlet-name>
+        <url-pattern>/MatierManagementServlet</url-pattern>
+    </servlet-mapping>
+
+
+      <!-- Define AddMatierServlet  -->
+    <servlet>
+        <servlet-name>AddMatierServlet </servlet-name>
+        <servlet-class>com.example.jee.printing.platform.controller.AddMatierServlet</servlet-class>
+    </servlet>
+
+    <!-- Map MatierManagementServlet to /MatierManagementServlet -->
+    <servlet-mapping>
+        <servlet-name>AddMatierServlet</servlet-name>
+        <url-pattern>/AddMatierServlet</url-pattern>
+    </servlet-mapping>
+
+
+
+      <!-- Define EditMatierServlet -->
+    <servlet>
+        <servlet-name>EditMatierServlet</servlet-name>
+        <servlet-class>com.example.jee.printing.platform.controller.EditMatierServlet</servlet-class>
+    </servlet>
+
+    <!-- Map EditMatierServlet to /EditMatierServlet -->
+    <servlet-mapping>
+        <servlet-name>EditMatierServlet</servlet-name>
+        <url-pattern>/EditMatierServlet</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>
