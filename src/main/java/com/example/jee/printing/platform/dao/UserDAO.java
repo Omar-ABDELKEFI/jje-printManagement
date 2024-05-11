@@ -175,4 +175,30 @@ public class UserDAO {
 
         return users;
     }
+
+    public void updateUser(User user) {
+    Connection connection = null;
+    PreparedStatement statement = null;
+
+    try {
+        connection = ConnectionUtils.getConnection();
+        String query = "UPDATE User SET firstName = ?, lastName = ?, email = ? WHERE id = ?";
+        statement = connection.prepareStatement(query);
+        statement.setString(1, user.getFirstName());
+        statement.setString(2, user.getLastName());
+        statement.setString(3, user.getEmail());
+        statement.setInt(4, user.getId());
+        statement.executeUpdate();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        try {
+            if (statement != null) statement.close();
+            if (connection != null) connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
 }
