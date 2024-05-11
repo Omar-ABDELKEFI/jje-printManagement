@@ -110,27 +110,27 @@
       <!-- Define AddMatierServlet  -->
     <servlet>
         <servlet-name>AddMatierServlet </servlet-name>
-        <servlet-class>com.example.jee.printing.platform.controller.MatierManagementServlet</servlet-class>
+        <servlet-class>com.example.jee.printing.platform.controller.AddMatierServlet</servlet-class>
     </servlet>
 
     <!-- Map MatierManagementServlet to /MatierManagementServlet -->
     <servlet-mapping>
-        <servlet-name>MatierManagementServlet</servlet-name>
-        <url-pattern>/MatierManagementServlet</url-pattern>
+        <servlet-name>AddMatierServlet</servlet-name>
+        <url-pattern>/AddMatierServlet</url-pattern>
     </servlet-mapping>
 
 
 
-      <!-- Define MatierManagementServlet -->
+      <!-- Define EditMatierServlet -->
     <servlet>
-        <servlet-name>MatierManagementServlet</servlet-name>
-        <servlet-class>com.example.jee.printing.platform.controller.MatierManagementServlet</servlet-class>
+        <servlet-name>EditMatierServlet</servlet-name>
+        <servlet-class>com.example.jee.printing.platform.controller.EditMatierServlet</servlet-class>
     </servlet>
 
-    <!-- Map MatierManagementServlet to /MatierManagementServlet -->
+    <!-- Map EditMatierServlet to /EditMatierServlet -->
     <servlet-mapping>
-        <servlet-name>MatierManagementServlet</servlet-name>
-        <url-pattern>/MatierManagementServlet</url-pattern>
+        <servlet-name>EditMatierServlet</servlet-name>
+        <url-pattern>/EditMatierServlet</url-pattern>
     </servlet-mapping>
 
 
