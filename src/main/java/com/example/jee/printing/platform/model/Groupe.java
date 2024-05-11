@@ -13,6 +13,9 @@ public class Groupe {
         this.numStudents = numStudents;
     }
 
+    public Groupe() {
+    }
+
     // Getters and setters
     public int getId() {
         return id;

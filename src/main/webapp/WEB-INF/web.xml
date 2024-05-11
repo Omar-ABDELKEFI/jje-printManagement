@@ -134,4 +134,44 @@
     </servlet-mapping>
 
 
+      <!-- Define GroupeManagementServlet -->
+    <servlet>
+        <servlet-name>GroupeManagementServlet</servlet-name>
+        <servlet-class>com.example.jee.printing.platform.controller.GroupeManagementServlet</servlet-class>
+    </servlet>
+
+    <!-- Map GroupeManagementServlet to /GroupeManagementServlet -->
+    <servlet-mapping>
+        <servlet-name>GroupeManagementServlet</servlet-name>
+        <url-pattern>/GroupeManagementServlet</url-pattern>
+    </servlet-mapping>
+
+
+      <!-- Define AddGroupeServlet  -->
+    <servlet>
+        <servlet-name>AddGroupeServlet </servlet-name>
+        <servlet-class>com.example.jee.printing.platform.controller.AddGroupeServlet</servlet-class>
+    </servlet>
+
+    <!-- Map GroupeManagementServlet to /GroupeManagementServlet -->
+    <servlet-mapping>
+        <servlet-name>AddGroupeServlet</servlet-name>
+        <url-pattern>/AddGroupeServlet</url-pattern>
+    </servlet-mapping>
+
+
+
+      <!-- Define EditGroupeServlet -->
+    <servlet>
+        <servlet-name>EditGroupeServlet</servlet-name>
+        <servlet-class>com.example.jee.printing.platform.controller.EditGroupeServlet</servlet-class>
+    </servlet>
+
+    <!-- Map EditGroupeServlet to /EditGroupeServlet -->
+    <servlet-mapping>
+        <servlet-name>EditGroupeServlet</servlet-name>
+        <url-pattern>/EditGroupeServlet</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>
