@@ -9,7 +9,9 @@ services:
       MYSQL_USER: mjjsuser
       MYSQL_PASSWORD: mjjspassword
     volumes:
-      - ./DBdata:/var/lib/mysql
+      - /var/lib/mysql
+      - ./mjjs.sql:/docker-entrypoint-initdb.d/data.sql  # Mount data.sql into the container
+
     ports:
       - "3306:3306"
     networks:
