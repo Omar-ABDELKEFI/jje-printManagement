@@ -15,7 +15,6 @@ public class DeleteGroupServlet extends HttpServlet {
         GroupeDAO groupeDAO = new GroupeDAO();
         groupeDAO.deleteGroupe(groupId);
 
-        // Redirect back to the group management page after deletion
         response.sendRedirect("GroupeManagementServlet"); 
     }
 }

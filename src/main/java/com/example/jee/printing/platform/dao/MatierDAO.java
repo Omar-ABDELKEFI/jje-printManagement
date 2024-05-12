@@ -158,14 +158,12 @@ public class MatierDAO {
         try {
             connection = ConnectionUtils.getConnection();
     
-            // Construct the SQL query with a join on the MatierGroupe table
             StringBuilder queryBuilder = new StringBuilder();
             queryBuilder.append("SELECT m.id, m.name ");
             queryBuilder.append("FROM Matier m ");
             queryBuilder.append("INNER JOIN MatierGroupe mg ON m.id = mg.matier_id ");
             queryBuilder.append("WHERE mg.groupe_id IN (");
     
-            // Build the IN clause with the group IDs
             for (int i = 0; i < groupIds.length; i++) {
                 queryBuilder.append("?");
                 if (i < groupIds.length - 1) {
@@ -174,14 +172,12 @@ public class MatierDAO {
             }
             queryBuilder.append(") ");
     
-            // Add a HAVING clause to filter for common matiers
             queryBuilder.append("GROUP BY m.id, m.name ");
             queryBuilder.append("HAVING COUNT(DISTINCT mg.groupe_id) = ?");
     
             String query = queryBuilder.toString();
             statement = connection.prepareStatement(query);
     
-            // Set the parameter values (group IDs and the count)
             int paramIndex = 1;
             for (int groupId : groupIds) {
                 statement.setInt(paramIndex++, groupId);

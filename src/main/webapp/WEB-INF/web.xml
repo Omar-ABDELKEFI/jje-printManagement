@@ -15,9 +15,9 @@
         <servlet-name>PrintRequestServlet</servlet-name>
         <servlet-class>com.example.jee.printing.platform.controller.PrintRequestServlet</servlet-class>
         <multipart-config>
-            <max-file-size>20848820</max-file-size>            <!-- Max size in bytes (20MB) -->
-            <max-request-size>418018841</max-request-size>            <!-- Max size of multipart/form-data request in bytes (50MB) -->
-            <file-size-threshold>1048576</file-size-threshold>            <!-- Size threshold for buffering files in bytes (1MB) -->
+            <max-file-size>20848820</max-file-size>            
+            <max-request-size>418018841</max-request-size>           
+            <file-size-threshold>1048576</file-size-threshold>           
         </multipart-config>
     </servlet>
 

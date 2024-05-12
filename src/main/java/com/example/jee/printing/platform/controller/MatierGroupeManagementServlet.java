@@ -29,7 +29,6 @@ public class MatierGroupeManagementServlet extends HttpServlet {
         GroupeDAO groupeDAO = new GroupeDAO();
         List<Groupe> groupeList = groupeDAO.findAll();
 
-        // Set the lists as attributes in the request scope
         request.setAttribute("matierList", matierList);
         request.setAttribute("groupeList", groupeList);
 

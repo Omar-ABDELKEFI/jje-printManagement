@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
                     response.sendRedirect("/agentDashboard");
                     break;
                 default:
-                    response.sendRedirect("/views/login.jsp"); // Redirect to a default page if role not recognized
+                    response.sendRedirect("/views/login.jsp"); 
             }
         } else {
             response.sendRedirect("/views/login.jsp");

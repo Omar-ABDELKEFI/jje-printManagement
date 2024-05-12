@@ -20,7 +20,6 @@ public class User {
         this.status = status;
     }
 
- // Constructor
     public User() {
         
     }
@@ -34,7 +33,6 @@ public class User {
         this.status = status;
     }
 
-    // Getters and Setters
     public String getFirstName() {
         return firstName;
     }
@@ -91,7 +89,6 @@ public class User {
         this.status = status;
     }
 
-    // toString method for easy printing
     @Override
     public String toString() {
         return "User{" +

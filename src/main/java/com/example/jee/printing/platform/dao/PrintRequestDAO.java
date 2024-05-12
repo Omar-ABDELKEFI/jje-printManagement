@@ -85,5 +85,4 @@ public class PrintRequestDAO {
         }
     }
 
-    // Other DAO methods (findById, update, delete, etc.)
 }
