@@ -225,4 +225,16 @@
     </servlet-mapping>
 
 
+      <!-- Define LogoutServlet -->
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.example.jee.printing.platform.controller.LogoutServlet</servlet-class>
+    </servlet>
+
+    <!-- Map LogoutServlet to /LogoutServlet -->
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>
