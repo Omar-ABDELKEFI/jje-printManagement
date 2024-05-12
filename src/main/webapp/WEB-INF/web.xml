@@ -1,20 +1,24 @@
 <web-app xmlns="http://java.sun.com/xml/ns/j2ee" version="2.4"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http:/java.sun.com/dtd/web-app_2_3.dtd">
-  <servlet>
-    <servlet-name>hello</servlet-name>
-    <servlet-class>com.example.jee.printing.platform.controller.HelloServlet</servlet-class>
-  </servlet>
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http:/java.sun.com/dtd/web-app_2_3.dtd">
+    <servlet>
+        <servlet-name>hello</servlet-name>
+        <servlet-class>com.example.jee.printing.platform.controller.HelloServlet</servlet-class>
+    </servlet>
 
-  <servlet-mapping>
-    <servlet-name>hello</servlet-name>
-    <url-pattern>/hello</url-pattern>
-  </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>hello</servlet-name>
+        <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
 
     <!-- Define PrintRequestServlet -->
     <servlet>
         <servlet-name>PrintRequestServlet</servlet-name>
         <servlet-class>com.example.jee.printing.platform.controller.PrintRequestServlet</servlet-class>
+        <multipart-config>
+            <max-file-size>20848820</max-file-size>            <!-- Max size in bytes (20MB) -->
+            <max-request-size>418018841</max-request-size>            <!-- Max size of multipart/form-data request in bytes (50MB) -->
+            <file-size-threshold>1048576</file-size-threshold>            <!-- Size threshold for buffering files in bytes (1MB) -->
+        </multipart-config>
     </servlet>
 
     <!-- Map PrintRequestServlet to /printRequest -->
@@ -35,7 +39,7 @@
         <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
 
-        <!-- Define LoginServlet -->
+    <!-- Define LoginServlet -->
     <servlet>
         <servlet-name>EditUserServlet</servlet-name>
         <servlet-class>com.example.jee.printing.platform.controller.EditUserServlet</servlet-class>
@@ -47,7 +51,7 @@
         <url-pattern>/EditUserServlet</url-pattern>
     </servlet-mapping>
 
-      <!-- Define AdminDashboardServlet -->
+    <!-- Define AdminDashboardServlet -->
     <servlet>
         <servlet-name>AdminDashboardServlet</servlet-name>
         <servlet-class>com.example.jee.printing.platform.controller.AdminDashboardServlet</servlet-class>
@@ -82,15 +86,22 @@
         <servlet-name>AddUserServlet</servlet-name>
         <url-pattern>/AddUserServlet</url-pattern>
     </servlet-mapping>
-
-     <servlet>
-    <description></description>
-    <display-name>AgentDashboardServlet</display-name>
-    <servlet-name>AgentDashboardServlet</servlet-name>
-    <servlet-class>com.example.jee.printing.platform.controller.AgentDashboardServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AgentDashboardServlet</servlet-name>
-    <url-pattern>/agentDashboard</url-pattern>
-  </servlet-mapping>
+    <servlet>
+        <servlet-name>GetMatiersServlet</servlet-name>
+        <servlet-class>com.example.jee.printing.platform.controller.GetMatiersServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetMatiersServlet</servlet-name>
+        <url-pattern>/getMatiers</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <description></description>
+        <display-name>AgentDashboardServlet</display-name>
+        <servlet-name>AgentDashboardServlet</servlet-name>
+        <servlet-class>com.example.jee.printing.platform.controller.AgentDashboardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AgentDashboardServlet</servlet-name>
+        <url-pattern>/agentDashboard</url-pattern>
+    </servlet-mapping>
 </web-app>
