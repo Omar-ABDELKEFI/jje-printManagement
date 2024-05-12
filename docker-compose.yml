@@ -10,7 +10,7 @@ services:
       MYSQL_PASSWORD: mjjspassword
     volumes:
       - /var/lib/mysql
-      - ./mjjs.sql:/docker-entrypoint-initdb.d/data.sql  # Mount data.sql into the container
+      - ./mjjs.sql:/docker-entrypoint-initdb.d/data.sql  
 
     ports:
       - "3306:3306"
