@@ -37,6 +37,9 @@
                         <a class="nav-link" href="MatierManagementServlet">Course Management</a>
                     </li>
                 </ul>
+                <form class="form-inline my-2 my-lg-0" action="LogoutServlet" method="get"> 
+                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
+                </form>
             </div>
         </div>
     </nav>
@@ -55,8 +58,8 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Matier ID</th>
-                <th>Group ID</th>
+                <th>Matier Name</th>
+                <th>Group Name</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -65,8 +68,9 @@
             <c:forEach var="matierGroupe" items="${matierGroupeList}">
                 <tr>
                     <td>${matierGroupe.id}</td>
-                    <td>${matierGroupe.matierId}</td>
-                    <td>${matierGroupe.groupeId}</td>
+                    <td>${matierGroupe.matierName}</td>
+                    <td>${matierGroupe.groupeName}</td>
+            
                     <!-- Add edit and delete buttons if needed -->
                     <td>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal${matierGroupe.id}">

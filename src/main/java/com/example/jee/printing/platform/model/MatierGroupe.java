@@ -4,6 +4,9 @@ public class MatierGroupe {
     private int id;
     private int matierId;
     private int groupeId;
+    private String matierName;
+    private String groupeName; 
+
 
     public MatierGroupe() {
     }
@@ -13,6 +16,33 @@ public class MatierGroupe {
         this.matierId = matierId;
         this.groupeId = groupeId;
     }
+
+    public MatierGroupe(int id, int matierId, int groupeId, String matierName, String groupeName) {
+        this.id = id;
+        this.matierId = matierId;
+        this.groupeId = groupeId;
+        this.matierName = matierName;
+        this.groupeName = groupeName;
+    }
+
+
+
+        public String getMatierName() {
+        return matierName;
+    }
+
+    public void setMatierName(String matierName) {
+        this.matierName = matierName;
+    }
+
+    public String getGroupeName() {
+        return groupeName;
+    }
+
+    public void setGroupeName(String groupeName) {
+        this.groupeName = groupeName;
+    }
+
 
     public int getId() {
         return id;
