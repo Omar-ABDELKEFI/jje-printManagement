@@ -75,7 +75,11 @@
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal${matier.id}">
                             Edit
                         </button>
-                        
+                        <form action="DeleteCourseServlet" method="post" style="display: inline;">
+                            <input type="hidden" name="matierId" value="${matier.id}">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+
                     </td>
                 
                 </tr>

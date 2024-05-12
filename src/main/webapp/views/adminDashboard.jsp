@@ -106,7 +106,18 @@
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal${user.id}">
                             Edit
                         </button>
-                        
+                        <c:choose>
+                            <c:when test="${!user.role.equals('admin')}">
+                                <form action="DeleteUserServlet" method="post" style="display: inline;">
+                                    <input type="hidden" name="userId" value="${user.id}">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </c:when>
+                            <c:otherwise>
+                            </c:otherwise>
+                        </c:choose>
+
+                    
                     </td>
                 </tr>
 
