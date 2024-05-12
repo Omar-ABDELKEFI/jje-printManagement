@@ -221,7 +221,7 @@
             var maxStudents = getMaxStudents(selectedGroup);
 
             if (selectedStudents > maxStudents) {
-                alert('Le nombre d\'étudiants dépasse le maximum autorisé pour le groupe sélectionné');
+                alert(`Le nombre d'étudiants dépasse le maximum autorisé pour le groupe sélectionné. maxStudents : ${maxStudents}`);
                 event.preventDefault();
             }
 
