@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Matier</title>
+    <title>Add Course</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add Matier</h5>
+                <h5 class="modal-title">Add Course</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -23,7 +23,7 @@
                         <input type="text" class="form-control" id="name" name="name" required>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Add Matier</button>
+                    <button type="submit" class="btn btn-primary">Add Course</button>
                 </form>
             </div>
         </div>
