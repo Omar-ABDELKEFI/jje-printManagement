@@ -77,7 +77,11 @@
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal${groupe.id}">
                             Edit
                         </button>
-                        
+                        <form  action="DeleteGroupServlet" method="post" style="display: inline;">
+                            <input type="hidden" name="groupId" value="${groupe.id}">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+        
                     </td>
                 
                 </tr>
@@ -85,7 +89,7 @@
                     <%-- Include editGroupe.jsp here --%>
                     <%@ include file="editGroupe.jsp" %>
                 </div>
-
+        
             </c:forEach>
         </tbody>
     </table>

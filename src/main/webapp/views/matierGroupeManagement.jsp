@@ -76,6 +76,10 @@
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal${matierGroupe.id}">
                             Edit
                         </button>
+                        <form action="DeleteMatierGroupeServlet" method="post" style="display: inline;">
+                            <input type="hidden" name="matierGroupeId" value="${matierGroupe.id}">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
                     </td>
                 </tr>
                 <div class="modal fade" data-backdrop="false" id="editModal${matierGroupe.id}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">

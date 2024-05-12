@@ -175,6 +175,27 @@ public class UserDAO {
 
         return users;
     }
+public void deleteUser(int userId) {
+    Connection connection = null;
+    PreparedStatement statement = null;
+
+    try {
+        connection = ConnectionUtils.getConnection();
+        String query = "DELETE FROM User WHERE id = ?";
+        statement = connection.prepareStatement(query);
+        statement.setInt(1, userId);
+        statement.executeUpdate();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        try {
+            if (statement != null) statement.close();
+            if (connection != null) connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
 
     public void updateUser(User user) {
     Connection connection = null;
