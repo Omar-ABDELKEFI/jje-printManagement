@@ -36,10 +36,10 @@ public class LoginServlet extends HttpServlet {
 
                     break;
                 case "teacher":
-                    response.sendRedirect("/views/login.jsp");
+                    response.sendRedirect("/printRequest");
                     break;
                 case "agent":
-                    response.sendRedirect("/views/login.jsp");
+                    response.sendRedirect("/agentDashboard");
                     break;
                 default:
                     response.sendRedirect("/views/login.jsp"); // Redirect to a default page if role not recognized

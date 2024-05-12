@@ -44,9 +44,9 @@
         </div>
     </nav>
     <div style="display: flex; justify-content: space-between;" class="px-5">
-        <h3>Matier Groupe List</h3>
+        <h3>Course Groupe List</h3>
         <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#addMatierGroupe">
-            Add Matier Groupe
+            Add Course Groupe
         </button>
     </div>
     <div class="modal fade" id="addMatierGroupe" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="addMatierGroupeLabel" aria-hidden="true">
