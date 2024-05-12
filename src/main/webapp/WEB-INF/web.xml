@@ -104,4 +104,125 @@
         <servlet-name>AgentDashboardServlet</servlet-name>
         <url-pattern>/agentDashboard</url-pattern>
     </servlet-mapping>
+
+      <!-- Define MatierManagementServlet -->
+    <servlet>
+        <servlet-name>MatierManagementServlet</servlet-name>
+        <servlet-class>com.example.jee.printing.platform.controller.MatierManagementServlet</servlet-class>
+    </servlet>
+
+    <!-- Map MatierManagementServlet to /MatierManagementServlet -->
+    <servlet-mapping>
+        <servlet-name>MatierManagementServlet</servlet-name>
+        <url-pattern>/MatierManagementServlet</url-pattern>
+    </servlet-mapping>
+
+
+      <!-- Define AddMatierServlet  -->
+    <servlet>
+        <servlet-name>AddMatierServlet </servlet-name>
+        <servlet-class>com.example.jee.printing.platform.controller.AddMatierServlet</servlet-class>
+    </servlet>
+
+    <!-- Map MatierManagementServlet to /MatierManagementServlet -->
+    <servlet-mapping>
+        <servlet-name>AddMatierServlet</servlet-name>
+        <url-pattern>/AddMatierServlet</url-pattern>
+    </servlet-mapping>
+
+
+
+      <!-- Define EditMatierServlet -->
+    <servlet>
+        <servlet-name>EditMatierServlet</servlet-name>
+        <servlet-class>com.example.jee.printing.platform.controller.EditMatierServlet</servlet-class>
+    </servlet>
+
+    <!-- Map EditMatierServlet to /EditMatierServlet -->
+    <servlet-mapping>
+        <servlet-name>EditMatierServlet</servlet-name>
+        <url-pattern>/EditMatierServlet</url-pattern>
+    </servlet-mapping>
+
+
+      <!-- Define GroupeManagementServlet -->
+    <servlet>
+        <servlet-name>GroupeManagementServlet</servlet-name>
+        <servlet-class>com.example.jee.printing.platform.controller.GroupeManagementServlet</servlet-class>
+    </servlet>
+
+    <!-- Map GroupeManagementServlet to /GroupeManagementServlet -->
+    <servlet-mapping>
+        <servlet-name>GroupeManagementServlet</servlet-name>
+        <url-pattern>/GroupeManagementServlet</url-pattern>
+    </servlet-mapping>
+
+
+      <!-- Define AddGroupeServlet  -->
+    <servlet>
+        <servlet-name>AddGroupeServlet </servlet-name>
+        <servlet-class>com.example.jee.printing.platform.controller.AddGroupeServlet</servlet-class>
+    </servlet>
+
+    <!-- Map GroupeManagementServlet to /GroupeManagementServlet -->
+    <servlet-mapping>
+        <servlet-name>AddGroupeServlet</servlet-name>
+        <url-pattern>/AddGroupeServlet</url-pattern>
+    </servlet-mapping>
+
+
+
+      <!-- Define EditGroupeServlet -->
+    <servlet>
+        <servlet-name>EditGroupeServlet</servlet-name>
+        <servlet-class>com.example.jee.printing.platform.controller.EditGroupeServlet</servlet-class>
+    </servlet>
+
+    <!-- Map EditGroupeServlet to /EditGroupeServlet -->
+    <servlet-mapping>
+        <servlet-name>EditGroupeServlet</servlet-name>
+        <url-pattern>/EditGroupeServlet</url-pattern>
+    </servlet-mapping>
+
+
+      <!-- Define MatierGroupeManagementServlet -->
+    <servlet>
+        <servlet-name>MatierGroupeManagementServlet</servlet-name>
+        <servlet-class>com.example.jee.printing.platform.controller.MatierGroupeManagementServlet</servlet-class>
+    </servlet>
+
+    <!-- Map MatierGroupeManagementServlet to /MatierGroupeManagementServlet -->
+    <servlet-mapping>
+        <servlet-name>MatierGroupeManagementServlet</servlet-name>
+        <url-pattern>/MatierGroupeManagementServlet</url-pattern>
+    </servlet-mapping>
+
+
+      <!-- Define AddMatierGroupeServlet  -->
+    <servlet>
+        <servlet-name>AddMatierGroupeServlet </servlet-name>
+        <servlet-class>com.example.jee.printing.platform.controller.AddMatierGroupeServlet</servlet-class>
+    </servlet>
+
+    <!-- Map MatierGroupeManagementServlet to /MatierGroupeManagementServlet -->
+    <servlet-mapping>
+        <servlet-name>AddMatierGroupeServlet</servlet-name>
+        <url-pattern>/AddMatierGroupeServlet</url-pattern>
+    </servlet-mapping>
+
+
+
+      <!-- Define EditMatierGroupeServlet -->
+    <servlet>
+        <servlet-name>EditMatierGroupeServlet</servlet-name>
+        <servlet-class>com.example.jee.printing.platform.controller.EditMatierGroupeServlet</servlet-class>
+    </servlet>
+
+    <!-- Map EditMatierGroupeServlet to /EditMatierGroupeServlet -->
+    <servlet-mapping>
+        <servlet-name>EditMatierGroupeServlet</servlet-name>
+        <url-pattern>/EditMatierGroupeServlet</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

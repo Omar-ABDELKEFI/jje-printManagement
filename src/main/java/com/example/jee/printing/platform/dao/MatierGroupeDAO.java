@@ -1,6 +1,6 @@
 package com.example.jee.printing.platform.dao;
 
-import com.example.jee.printing.platform.model.Groupe;
+import com.example.jee.printing.platform.model.MatierGroupe;
 import com.example.jee.printing.platform.utils.ConnectionUtils;
 
 import java.sql.Connection;
@@ -10,17 +10,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GroupeDAO {
-    public void addGroupe(Groupe groupe) {
+public class MatierGroupeDAO {
+
+    public void addMatierGroupe(MatierGroupe matierGroupe) {
         Connection connection = null;
         PreparedStatement statement = null;
 
         try {
             connection = ConnectionUtils.getConnection();
-            String query = "INSERT INTO Groupe (name, numStudents) VALUES (?, ?)";
+            String query = "INSERT INTO MatierGroupe (matier_id, groupe_id) VALUES (?, ?)";
             statement = connection.prepareStatement(query);
-            statement.setString(1, groupe.getName());
-            statement.setInt(2, groupe.getNumStudents());
+            statement.setInt(1, matierGroupe.getMatierId());
+            statement.setInt(2, matierGroupe.getGroupeId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -34,24 +35,24 @@ public class GroupeDAO {
         }
     }
 
-    public Groupe findById(int groupId) {
-        Groupe groupe = null;
+    public MatierGroupe findById(int matierGroupeId) {
+        MatierGroupe matierGroupe = null;
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
 
         try {
             connection = ConnectionUtils.getConnection();
-            String query = "SELECT * FROM Groupe WHERE id = ?";
+            String query = "SELECT * FROM MatierGroupe WHERE id = ?";
             statement = connection.prepareStatement(query);
-            statement.setInt(1, groupId);
+            statement.setInt(1, matierGroupeId);
             resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                String name = resultSet.getString("name");
-                int numStudents = resultSet.getInt("numStudents");
+                int matierId = resultSet.getInt("matier_id");
+                int groupeId = resultSet.getInt("groupe_id");
 
-                groupe = new Groupe(groupId, name, numStudents);
+                matierGroupe = new MatierGroupe(matierGroupeId, matierId, groupeId);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -65,28 +66,28 @@ public class GroupeDAO {
             }
         }
 
-        return groupe;
+        return matierGroupe;
     }
 
-    public List<Groupe> findAll() {
-        List<Groupe> groupes = new ArrayList<>();
+    public List<MatierGroupe> findAll() {
+        List<MatierGroupe> matierGroupes = new ArrayList<>();
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
 
         try {
             connection = ConnectionUtils.getConnection();
-            String query = "SELECT * FROM Groupe";
+            String query = "SELECT * FROM MatierGroupe";
             statement = connection.prepareStatement(query);
             resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                int groupId = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                int numStudents = resultSet.getInt("numStudents");
+                int matierGroupeId = resultSet.getInt("id");
+                int matierId = resultSet.getInt("matier_id");
+                int groupeId = resultSet.getInt("groupe_id");
 
-                Groupe groupe = new Groupe(groupId, name, numStudents);
-                groupes.add(groupe);
+                MatierGroupe matierGroupe = new MatierGroupe(matierGroupeId, matierId, groupeId);
+                matierGroupes.add(matierGroupe);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -100,20 +101,20 @@ public class GroupeDAO {
             }
         }
 
-        return groupes;
+        return matierGroupes;
     }
 
-    public void updateGroupe(Groupe groupe) {
+    public void updateMatierGroupe(MatierGroupe matierGroupe) {
         Connection connection = null;
         PreparedStatement statement = null;
 
         try {
             connection = ConnectionUtils.getConnection();
-            String query = "UPDATE Groupe SET name = ?, numStudents = ? WHERE id = ?";
+            String query = "UPDATE MatierGroupe SET matier_id = ?, groupe_id = ? WHERE id = ?";
             statement = connection.prepareStatement(query);
-            statement.setString(1, groupe.getName());
-            statement.setInt(2, groupe.getNumStudents());
-            statement.setInt(3, groupe.getId());
+            statement.setInt(1, matierGroupe.getMatierId());
+            statement.setInt(2, matierGroupe.getGroupeId());
+            statement.setInt(3, matierGroupe.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -127,15 +128,15 @@ public class GroupeDAO {
         }
     }
 
-    public void deleteGroupe(int groupId) {
+    public void deleteMatierGroupe(int matierGroupeId) {
         Connection connection = null;
         PreparedStatement statement = null;
 
         try {
             connection = ConnectionUtils.getConnection();
-            String query = "DELETE FROM Groupe WHERE id = ?";
+            String query = "DELETE FROM MatierGroupe WHERE id = ?";
             statement = connection.prepareStatement(query);
-            statement.setInt(1, groupId);
+            statement.setInt(1, matierGroupeId);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
