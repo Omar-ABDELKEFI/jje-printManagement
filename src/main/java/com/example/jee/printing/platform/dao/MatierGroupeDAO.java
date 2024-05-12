@@ -149,4 +149,45 @@ public class MatierGroupeDAO {
             }
         }
     }
+
+    public List<MatierGroupe> findAllWithNames() {
+        List<MatierGroupe> matierGroupes = new ArrayList<>();
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = ConnectionUtils.getConnection();
+            String query = "SELECT mg.id, mg.matier_id, m.name AS matier_name, mg.groupe_id, g.name AS groupe_name " +
+                           "FROM MatierGroupe mg " +
+                           "INNER JOIN Matier m ON mg.matier_id = m.id " +
+                           "INNER JOIN Groupe g ON mg.groupe_id = g.id";
+            statement = connection.prepareStatement(query);
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int matierGroupeId = resultSet.getInt("id");
+                int matierId = resultSet.getInt("matier_id");
+                String matierName = resultSet.getString("matier_name");
+                int groupeId = resultSet.getInt("groupe_id");
+                String groupeName = resultSet.getString("groupe_name");
+
+                MatierGroupe matierGroupe = new MatierGroupe(matierGroupeId, matierId, groupeId, matierName,  groupeName);
+                matierGroupes.add(matierGroupe);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return matierGroupes;
+    }
+
 }

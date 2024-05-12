@@ -22,14 +22,21 @@
                 <form action="EditMatierGroupeServlet" method="post">
                     <input type="hidden" name="matierGroupeId" value="${matierGroupe.id}">
                     <div class="form-group">
-                        <label for="matierId">Matier ID</label>
-                        <input type="number" class="form-control" id="matierId" name="matierId" value="${matierGroupe.matierId}" required>
+                        <label for="matierId">Matier:</label>
+                        <select class="form-control" id="matierId" name="matierId">
+                            <c:forEach var="matier" items="${matierList}">
+                                <option value="${matier.id}" ${matier.id == matierGroupe.matierId ? 'selected' : ''}>${matier.name}</option>
+                            </c:forEach>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="groupeId">Group ID</label>
-                        <input type="number" class="form-control" id="groupeId" name="groupeId" value="${matierGroupe.groupeId}" required>
+                        <label for="groupeId">Group:</label>
+                        <select class="form-control" id="groupeId" name="groupeId">
+                            <c:forEach var="groupe" items="${groupeList}">
+                                <option value="${groupe.id}" ${groupe.id == matierGroupe.groupeId ? 'selected' : ''}>${groupe.name}</option>
+                            </c:forEach>
+                        </select>
                     </div>
-
                     <button type="submit" class="btn btn-primary">Save Changes</button>
                 </form>
             </div>

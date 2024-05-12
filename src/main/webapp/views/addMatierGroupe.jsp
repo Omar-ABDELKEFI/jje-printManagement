@@ -21,15 +21,24 @@
                 <!-- Add your add form here -->
                 <form action="AddMatierGroupeServlet" method="post">
                     <div class="form-group">
-                        <label for="matierId">Matier ID</label>
-                        <input type="number" class="form-control" id="matierId" name="matierId" required>
+                        <label for="matierId">Matier:</label>
+                        <select class="form-control" id="matierId" name="matierId">
+                            <option value="" selected disabled>Select Matier</option>
+                            <c:forEach var="matier" items="${matierList}">
+                                <option value="${matier.id}">${matier.name}</option>
+                            </c:forEach>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="groupeId">Group ID</label>
-                        <input type="number" class="form-control" id="groupeId" name="groupeId" required>
+                        <label for="groupeId">Group:</label>
+                        <select class="form-control" id="groupeId" name="groupeId">
+                            <option value="" selected disabled>Select Groupe</option>
+                            <c:forEach var="groupe" items="${groupeList}">
+                                <option value="${groupe.id}">${groupe.name}</option>
+                            </c:forEach>
+                        </select>
                     </div>
-
-                    <button type="submit" class="btn btn-primary">Add Matier Groupe</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </form>
             </div>
         </div>
