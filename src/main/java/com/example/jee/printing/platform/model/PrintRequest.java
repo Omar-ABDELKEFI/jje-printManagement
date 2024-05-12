@@ -11,7 +11,6 @@ public class PrintRequest {
     private LocalDateTime arrivalDateTime;
     private InputStream document;
 
-    // Constructors
     public PrintRequest() {
     }
 
@@ -23,7 +22,6 @@ public class PrintRequest {
         this.fileName = fileName;
     }
 
-    // Getters and setters
     public int getId() {
         return id;
     }

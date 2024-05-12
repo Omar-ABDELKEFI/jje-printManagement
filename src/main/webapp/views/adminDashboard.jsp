@@ -9,11 +9,8 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
 
     <title>Admin Dashboard</title>
-    <!-- Link Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Add custom CSS -->
     <style>
-        /* Custom styles */
         .table th, .table td {
             vertical-align: middle;
         }
@@ -48,7 +45,6 @@
     </nav>
     <h2>Welcome Admin!</h2>
     
-    <!-- Add a section to display the list of users -->
     <div style="display: flex; justify-content: space-between;" class="px-5">
         <h3>User List</h3>
         <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#addUserModal">

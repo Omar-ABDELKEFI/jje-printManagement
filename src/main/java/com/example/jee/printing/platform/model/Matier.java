@@ -17,7 +17,6 @@ public class Matier {
     }
 
 
-    // Getters and setters
     public int getId() {
         return id;
     }

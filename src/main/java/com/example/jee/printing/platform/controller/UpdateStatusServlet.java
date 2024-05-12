@@ -13,7 +13,6 @@ public class UpdateStatusServlet extends HttpServlet {
         int userId = Integer.parseInt(request.getParameter("userId"));
         String status = request.getParameter("status");
         
-        // Update the user status (example implementation)
         updateUserStatus(userId, status);
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST");
@@ -24,7 +23,6 @@ public class UpdateStatusServlet extends HttpServlet {
         response.sendRedirect("AdminDashboardServlet");
     }
     
-    // Method to update user status (example implementation)
     private void updateUserStatus(int userId, String status) {
        UserDAO userDAO = new UserDAO();
        userDAO.updateStatus(userId,status);
