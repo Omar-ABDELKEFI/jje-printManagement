@@ -39,6 +39,10 @@
                         <a class="nav-link" href="MatierGroupeManagementServlet">Group/Course Management</a>
                     </li>
                 </ul>
+                <form class="form-inline my-2 my-lg-0" action="LogoutServlet" method="get"> 
+                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
+                </form>
+    
             </div>
         </div>
     </nav>
