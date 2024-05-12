@@ -1,5 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,6 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agent Dashboard</title>
+    <!-- Include PDF.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -56,6 +58,9 @@
         button:hover {
             background-color: #45a049;
         }
+        canvas {
+            border: 1px solid black;
+        }
     </style>
 </head>
 <body>
@@ -77,22 +82,54 @@
                         <td>${task.teacherName}</td>
                         <td>${task.numCopies}</td>
                         <td>${task.receptionDate}</td>
-                        <td>${task.fileName}</td>
-                        <td><button onclick="">Print Document</button></td>
+                        <td>
+                            <canvas id="pdf-render-${loop.index}" width="59" height="84">></canvas>
+                            <div style="text-align: center; margin-left:-13px ;">${task.fileName}</div>
+                            <script>
+                                var pdfData = atob("${task.document}");
+                                var canvas = document.getElementById("pdf-render-${loop.index}");
+
+                                pdfjsLib.getDocument({ data: pdfData }).promise.then(pdf => {
+                                    pdf.getPage(1).then(page => {
+                                        const viewport = page.getViewport({ scale: 0.1 });
+                                        const context = canvas.getContext("2d");
+                                        canvas.height = viewport.height;
+                                        canvas.width = viewport.width;
+
+                                        const renderContext = {
+                                            canvasContext: context,
+                                            viewport: viewport
+                                        };
+
+                                        page.render(renderContext);
+                                    });
+                                });
+                            </script>
+                        </td>
+                        <td>
+                            <button onclick="printPdf('${task.document}')">Print</button>
+                        </td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
     </div>
-
     <script>
-        function printDocument(pdfBlob) {
-            const pdfUrl = URL.createObjectURL(pdfBlob);
-            const pdfWindow = window.open(pdfUrl);
-            pdfWindow.onload = function() {
-                pdfWindow.print();
+        function printPdf(base64PdfData) {
+            const pdfUrl = 'data:application/pdf;base64,' + base64PdfData;
+            const scale = 4; 
+            const windowContent = '<!DOCTYPE html><html><head><title>Print PDF</title></head><body><object data="' + pdfUrl + '" type="application/pdf" style="width: 100%; height: 100vh;"></object></body></html>';
+    
+            const printWin = window.open('', '', 'width=800,height=600');
+            printWin.document.open();
+            printWin.document.write(windowContent);
+            printWin.document.close();
+            printWin.onload = function() {
+                printWin.print();
             };
         }
     </script>
+    
+    
 </body>
 </html>
