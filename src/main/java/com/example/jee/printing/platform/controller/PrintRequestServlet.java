@@ -6,11 +6,13 @@ import com.example.jee.printing.platform.dao.PrintMatierGroupeDAO;
 import com.example.jee.printing.platform.dao.PrintRequestDAO;
 import com.example.jee.printing.platform.model.Groupe;
 import com.example.jee.printing.platform.model.PrintRequest;
+import com.example.jee.printing.platform.model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import java.io.IOException;
@@ -56,8 +58,9 @@ public class PrintRequestServlet extends HttpServlet {
        
 
         LocalDateTime arrivalDateTime = LocalDateTime.parse(request.getParameter("arrivalDateTime"));
-
-        int loggedInUserId = 1;
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        int loggedInUserId = user != null ? user.getId() : 1;
 
         PrintRequest printRequest = new PrintRequest();
         printRequest.setUserId(loggedInUserId);
