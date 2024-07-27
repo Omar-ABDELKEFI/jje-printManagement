@@ -47,3 +47,6 @@ docker-compose up
 
 This will build the Docker images and start the containers defined in the `docker-compose.yml` file.
 
+## Credits
+
+This project was created with contributions from Omar Abdelkefi.
